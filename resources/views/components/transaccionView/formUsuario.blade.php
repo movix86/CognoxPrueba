@@ -1,47 +1,10 @@
-{{-- <form action="{{ url('guardaru') }}" method="POST">
-    @csrf
-
-    {{--INCLUDE FUNCIONA PARA GUARDADO EXITOSO--}}
-@include('flash-message')
-    <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">Escribe tu nombre. tiene que ser exacto.</small>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">Escribe tu email correcto. recuerdalo y no lo olvides.</small>
-      </div>
-      <div class="form-group">
-        <label for="cuenta">#Clave</label>
-        <input type="password" class="form-control" id="clave" name="clave" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">Escribe tu password.</small>
-      </div>
-      <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
-<br>
-<br>
-{{--ERRORS FUNCIONA PARA VALIDACION DE CAMPOS CON UN REUQEST--}}
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif --}}
-
-
-@extends('layouts.app')
-
-@section('content')
 <div class="container">
+    {{--INCLUDE FUNCIONA PARA GUARDADO EXITOSO--}}
+    @include('flash-message')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('guardaru') }}">
@@ -124,6 +87,14 @@
         </div>
     </div>
 </div>
-@endsection
 
-
+{{--ERRORS FUNCIONA PARA VALIDACION DE CAMPOS CON UN REUQEST--}}
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif

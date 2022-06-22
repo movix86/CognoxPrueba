@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SendFormValidator;
 use App\Http\Requests\CreateFormValidator;
+use App\Http\Requests\CreateUserValidator;
 use App\Models\User;
 use App\Models\Accounts;
 use Illuminate\Support\Facades\Hash;
@@ -71,6 +72,7 @@ class TransaccionController extends Controller
             $cuenta->email = $data['email'];
             $cuenta->cuenta = $data['cuenta'];
             $cuenta->saldo = $data['saldo'];
+            $cuenta->user_id = $user->id;
             $cuenta->save();
         }
         return back()->with('success','Cuenta creada!');
@@ -80,12 +82,15 @@ class TransaccionController extends Controller
         return view('crearUsuario');
     }
 
-    public function guardaru(Request $request){
+    public function guardaru(Request $request, CreateUserValidator $createuservalidator){
 
         $data['name'] = $request->input('name');
         $data['email'] = $request->input('email');
-        $data['clave'] = $request->input('clave');
-
+        $data['documento'] = $request->input('documento');
+        $data['clave'] = Hash::make($request->input('password'));
+        if (User::where('email', $data['email'])->first() || User::where('documento', $data['documento'])->first()) {
+            return back()->with('error','Este usuarios ya existe');
+        }
 
 
         $user = User::where('email', $data['email'])->first();
@@ -93,11 +98,10 @@ class TransaccionController extends Controller
             $cuenta = new User;
             $cuenta->name = $data['name'];
             $cuenta->email = $data['email'];
+            $cuenta->documento = $data['documento'];
             $cuenta->password = $data['clave'];
             $cuenta->save();
-        }else{
-            return back()->with('error','Este usuarios ya existe');
+            return back()->with('success','Este usuario fue creado, ahora puede crearle cuenta de pago!');
         }
-        return back()->with('success','Este usuario fue creado, ahora puede crearle cuenta de pago!');
     }
 }
