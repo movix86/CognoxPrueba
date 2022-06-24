@@ -5,9 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    <strong>{{ __('Bienvenido a su Banco') }}</strong>
-                </div>
+                <div class="card-header">{{ __('Estado de su cuenta') }}</div>
 
                 <div class="card-body">
                     {{-- @if (session('status'))
@@ -17,16 +15,11 @@
                     @endif
 
                     {{ __('You are logged in!') }} --}}
-                    <x-dashboard.ui_actions/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-
-                </div>
-                <div class="col-sm-6">
-                    <br>
-                    <a href="{{url('/crearu')}}">Registrar otro usuario para transferencia prueba</a>
+                    @if (isset($data))
+                        @component('components.estado.info', ['data'=>$data])
+                            <x-.estado.info/>
+                        @endcomponent
+                    @endif
                 </div>
             </div>
         </div>

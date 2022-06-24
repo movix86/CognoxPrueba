@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-sm-6">
-                            {{ __('Crear cuenta de pago: ') }}
+                            {{ __('Habilitar cuenta para transferencias: ') }}
                         </div>
                         <div class="col-sm-6">
                             <a href="{{url('/crearu')}}">Registrar usuario</a>

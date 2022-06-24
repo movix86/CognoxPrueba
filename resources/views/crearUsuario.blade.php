@@ -11,7 +11,7 @@
                             {{ __('Registrar usuario: ') }}
                         </div>
                         <div class="col-sm-6">
-                            <a href="{{url('/crearc')}}">Crear cuenta</a>
+                            <a href="{{url('/crearc')}}">*Habilitar cuenta de este usuario</a>
                         </div>
                     </div>
                 </div>

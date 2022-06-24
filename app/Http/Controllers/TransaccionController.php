@@ -19,10 +19,6 @@ class TransaccionController extends Controller
     }
     public function transaccion(){
         $user=Auth::user()->id;
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         $origen = Accounts::where('user_id', $user)->get();
 
         return view('transaccion', ['data'=>$origen]);
@@ -36,13 +32,14 @@ class TransaccionController extends Controller
 
         $cuentaDestino = Accounts::where('cuenta', $data['destino'])->first();
         $cuentaOrigen = Accounts::where('cuenta', $data['origen'])->first();
-        // var_dump($saveTransaction->cuenta);
+        // var_dump($data['destino']);
         // die();
+        if($cuentaOrigen->saldo <= 0){
+            return back()->with('error','No cuenta con suficiente saldo!');
+        }
         if ($data['origen'] == $cuentaDestino->cuenta){
             return back()->with('error','No puedes enviar dinero a tu cuenta!');
-        }elseif($cuentaOrigen->saldo <= 0){
-            return back()->with('error','No cuenta con suficiente saldo!');
-        }else{
+        }else if ($data['origen'] !== $cuentaDestino->cuenta){
             $cuentaDestino->saldo = $cuentaDestino->saldo + $data['cantidad'];
             $cuentaOrigen->saldo = $cuentaOrigen->saldo - $data['cantidad'];
         }
@@ -103,5 +100,20 @@ class TransaccionController extends Controller
             $cuenta->save();
             return back()->with('success','Este usuario fue creado, ahora puede crearle cuenta de pago!');
         }
+    }
+
+    public function estado(){
+        $user=Auth::user()->id;
+        $data = User::select(
+            'users.name',
+            'users.documento',
+            'accounts.cuenta',
+            'accounts.saldo',
+            )->leftjoin('accounts', 'accounts.user_id', '=', 'users.id',)->where('users.id', '=', trim($user))->get();
+
+
+
+        $origen = Accounts::where('user_id', $user)->get();
+        return view('estado_cuenta', ['data' => $data]);
     }
 }

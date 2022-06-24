@@ -6,12 +6,12 @@
     <div class="form-group">
         <label for="nombre">Nombre</label>
         <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">Escribe tu nombre. tiene que ser exacto.</small>
+        <small id="emailHelp" class="form-text text-muted">Nombre de un usuario registrado.</small>
       </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">Escribe tu email correcto. recuerdalo y no lo olvides.</small>
+        <small id="emailHelp" class="form-text text-muted">Email debe ser de un usuario registrado.</small>
       </div>
       <div class="form-group">
         <label for="cuenta">#Cuenta</label>
