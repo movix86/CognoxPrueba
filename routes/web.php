@@ -28,3 +28,4 @@ Route::post('/guardarc', [App\Http\Controllers\TransaccionController::class, 'gu
 Route::get('/crearu', [App\Http\Controllers\TransaccionController::class, 'crearu'])->name('crearu');
 Route::post('/guardaru', [App\Http\Controllers\TransaccionController::class, 'guardaru'])->name('guardaru');
 
+Route::get('/usuarios', [App\Http\Controllers\TransaccionController::class, 'usuariosFinales'])->name('usuarios');

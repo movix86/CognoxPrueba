@@ -19,6 +19,18 @@ class TransaccionController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function usuariosFinales(){
+
+        $data = User::select(
+            'users.id',
+            'users.name',
+            'users.documento',
+            'accounts.cuenta',
+            'accounts.saldo',
+            )->leftjoin('accounts', 'accounts.user_id', '=', 'users.id',)->simplePaginate(5);
+        return view('usuarios_finales', ['data'=>$data]);
+    }
     public function transaccion(){
         $user=Auth::user()->id;
         $origen = Accounts::where('user_id', $user)->get();
@@ -103,8 +115,6 @@ class TransaccionController extends Controller
             'accounts.cuenta',
             'accounts.saldo',
             )->leftjoin('accounts', 'accounts.user_id', '=', 'users.id',)->where('users.id', '=', trim($user))->get();
-
-
 
         $origen = Accounts::where('user_id', $user)->get();
         return view('estado_cuenta', ['data' => $data]);
