@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Accounts;
 use Illuminate\Support\Facades\Hash;
 
+use function PHPUnit\Framework\isEmpty;
+
 class TransaccionController extends Controller
 {
     public function __construct()
@@ -32,17 +34,22 @@ class TransaccionController extends Controller
 
         $cuentaDestino = Accounts::where('cuenta', $data['destino'])->first();
         $cuentaOrigen = Accounts::where('cuenta', $data['origen'])->first();
-        // var_dump($data['destino']);
+        // var_dump($cuentaDestino);
         // die();
         if($cuentaOrigen->saldo <= 0){
             return back()->with('error','No cuenta con suficiente saldo!');
         }
-        if ($data['origen'] == $cuentaDestino->cuenta){
+        if ($cuentaDestino == NULL) {
+            return back()->with('error','La cuena de destino no existe!');
+        }
+        if ($data['origen'] == $cuentaDestino['cuenta']){
             return back()->with('error','No puedes enviar dinero a tu cuenta!');
         }else if ($data['origen'] !== $cuentaDestino->cuenta){
             $cuentaDestino->saldo = $cuentaDestino->saldo + $data['cantidad'];
             $cuentaOrigen->saldo = $cuentaOrigen->saldo - $data['cantidad'];
         }
+
+
         $cuentaDestino->save();
         $cuentaOrigen->save();
         return back()->with('success','Tu envio ha sido realizado!');
