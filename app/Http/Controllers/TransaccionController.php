@@ -52,29 +52,6 @@ class TransaccionController extends Controller
         return view('crearCuenta');
     }
 
-    public function guardarc(Request $request, CreateFormValidator $createformvalidator){
-
-        $data['name'] = $request->input('name');
-        $data['email'] = $request->input('email');
-        $data['cuenta'] = $request->input('cuenta');
-        $data['saldo'] = $request->input('saldo');
-
-
-        $user = User::where('email', $data['email'])->first();
-        if ($user == NULL) {
-            return back()->with('error','Este usuarios no existe. debe registrarlo!');
-        }else{
-            $cuenta = new Accounts;
-            $cuenta->name = $data['name'];
-            $cuenta->email = $data['email'];
-            $cuenta->cuenta = $data['cuenta'];
-            $cuenta->saldo = $data['saldo'];
-            $cuenta->user_id = $user->id;
-            $cuenta->save();
-        }
-        return back()->with('success','Cuenta creada!');
-    }
-
     public function crearu(){
         return view('crearUsuario');
     }
@@ -84,22 +61,31 @@ class TransaccionController extends Controller
         $data['name'] = $request->input('name');
         $data['email'] = $request->input('email');
         $data['documento'] = $request->input('documento');
-        $data['clave'] = Hash::make($request->input('password'));
+        $data['password'] = Hash::make($request->input('password'));
         if (User::where('email', $data['email'])->first() || User::where('documento', $data['documento'])->first()) {
             return back()->with('error','Este usuarios ya existe');
         }
+        tap(User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'documento' => $request->input('documento'),
+            'password' => Hash::make($request->input('password')),
+        ]),function($accounts){
+            $this->guardarc($accounts);
+        });
+        return back()->with('success','Cuenta creada con exito');
+    }
 
+    public function guardarc($accounts){
+        $cuenta = rand(5,500000000000);
+        Accounts::forceCreate([
+            'name'=>$accounts->name,
+            'email'=>$accounts->email,
+            'cuenta'=>$cuenta,
+            'saldo'=>300.00,
+            'user_id'=>$accounts->id,
+        ]);
 
-        $user = User::where('email', $data['email'])->first();
-        if ($user == NULL) {
-            $cuenta = new User;
-            $cuenta->name = $data['name'];
-            $cuenta->email = $data['email'];
-            $cuenta->documento = $data['documento'];
-            $cuenta->password = $data['clave'];
-            $cuenta->save();
-            return back()->with('success','Este usuario fue creado, ahora puede crearle cuenta de pago!');
-        }
     }
 
     public function estado(){

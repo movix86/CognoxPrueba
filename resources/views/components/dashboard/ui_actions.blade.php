@@ -1,11 +1,14 @@
 <div class="row">
-    <h5>Paso1:
+    <h5>Bienvenido Señor/a
+        @if (isset($data))
+            {{$data['name']}}
+        @endif
         <small>
-            registrarse <i class="fa fa-check" style="font-size:20px;color:rgb(16, 82, 0)"></i>
+            Se encuentra en su <i class="fa fa-check" style="font-size:20px;color:rgb(16, 82, 0)"></i>
         </small>
     </h5>
     <hr>
-    <h5>Paso2:
+    {{-- <h5>Paso2:
         <small>
             Habilitar cuenta para transferencia<a href="{{url('/crearc')}}">Aqui!</a>.
         </small>
@@ -15,7 +18,7 @@
         <small>
             Repita los dos pasos anteriores para crear un usuario diferente y enviarle dinero.
         </small>
-    </h5>
+    </h5> --}}
 </div>
 <div class="row">
     <div class="col p-3 bg-light text-white btnCenter"><a href="{{url('/transaccion')}}"><i class="fa fa-money" style="font-size:34px"></i> <br> Transacciones</a></div>

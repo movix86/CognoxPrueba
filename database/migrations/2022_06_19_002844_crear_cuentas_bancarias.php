@@ -17,7 +17,7 @@ class CrearCuentasBancarias extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('cuenta');
+            $table->bigInteger('cuenta');
             $table->decimal('saldo', 10, 2);
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

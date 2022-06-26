@@ -10,9 +10,6 @@
                         <div class="col-sm-6">
                             {{ __('Registrar usuario: ') }}
                         </div>
-                        <div class="col-sm-6">
-                            <a href="{{url('/crearc')}}">*Habilitar cuenta de este usuario</a>
-                        </div>
                     </div>
                 </div>
                 <div class="card-body">

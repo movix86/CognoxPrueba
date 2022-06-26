@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Accounts;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,7 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'documento' => ['required', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'numeric', 'min:111', 'max:9999', 'confirmed'],
         ]);
     }
 
@@ -67,11 +68,24 @@ class RegisterController extends Controller
     {
         // var_dump($data);
         // die();
-        return User::create([
+        return tap(User::create([
             'name' => $data['name'],
-            'documento' => $data['documento'],
             'email' => $data['email'],
+            'documento' => $data['documento'],
             'password' => Hash::make($data['password']),
+        ]),function($accounts){
+            $this->guardarc($accounts);
+
+        });
+    }
+    public function guardarc($accounts){
+        $cuenta = rand(5,500000000000);
+        Accounts::forceCreate([
+            'name'=>$accounts->name,
+            'email'=>$accounts->email,
+            'cuenta'=>$cuenta,
+            'saldo'=>300.00,
+            'user_id'=>$accounts->id,
         ]);
     }
 }

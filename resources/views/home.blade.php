@@ -17,7 +17,11 @@
                     @endif
 
                     {{ __('You are logged in!') }} --}}
-                    <x-dashboard.ui_actions/>
+                    @if (isset($data))
+                        @component('components.dashboard.ui_actions', ['data'=>$data])
+                            <x-dashboard.ui_actions/>
+                        @endcomponent
+                    @endif
                 </div>
             </div>
             <div class="row">

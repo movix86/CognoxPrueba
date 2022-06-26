@@ -23,7 +23,7 @@
                     <tr>
                         <td>{{$item->name}}</td>
                         <td>{{$item->documento}}</td>
-                        <td>{{($item->cuenta!== null) ? $item->saldo : 'Debe habilitar cuenta'}}</td>
+                        <td>{{($item->cuenta!== null) ? $item->cuenta : 'Debe habilitar cuenta'}}</td>
                         <td>{{($item->saldo !== null) ? $item->saldo : 'Debe habilitar cuenta'}}</td>
                     </tr>
                 @endforeach
