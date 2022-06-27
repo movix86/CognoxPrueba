@@ -42,8 +42,8 @@ class TransaccionController extends Controller
         }
         $data = Accounts::select(
             'accounts.cuenta',
-            'cuentasregistradas.account_target',
-            )->leftjoin('cuentasregistradas', 'cuentasregistradas.user_origin_id', '=', 'accounts.user_id',)->where('accounts.user_id', '=', trim($user))->get();
+            'cuentasregistradas.account_target'
+            )->join('cuentasregistradas', 'cuentasregistradas.user_origin_id', '=', 'accounts.user_id')->where('accounts.user_id', $user)->get();
 
         return view('transaccion');
     }
