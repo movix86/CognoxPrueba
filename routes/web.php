@@ -28,4 +28,9 @@ Route::post('/guardarc', [App\Http\Controllers\TransaccionController::class, 'gu
 Route::get('/crearu', [App\Http\Controllers\TransaccionController::class, 'crearu'])->name('crearu');
 Route::post('/guardaru', [App\Http\Controllers\TransaccionController::class, 'guardaru'])->name('guardaru');
 
+Route::get('/abrir-registrar-cuenta', [App\Http\Controllers\TransaccionController::class, 'abrirRegistrarCuenta'])->name('abrirRegistrarCuenta');
+Route::post('/registrar-cuenta', [App\Http\Controllers\TransaccionController::class, 'registrarCuenta'])->name('registrarCuenta');
+
 Route::get('/usuarios', [App\Http\Controllers\TransaccionController::class, 'usuariosFinales'])->name('usuarios');
+
+Route::get('/log', [App\Http\Controllers\TransaccionController::class, 'log'])->name('log');

@@ -25,13 +25,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <br>
                     <a href="{{url('/crearu')}}">Registrar otro usuario para transferencia prueba</a>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <br>
                     <a href="{{url('/usuarios')}}">Usuarios registrados de prueba</a>
+                </div>
+                <div class="col-sm-4">
+                    <br>
+                    <a href="{{url('/log')}}">Historial envios</a>
                 </div>
 
             </div>

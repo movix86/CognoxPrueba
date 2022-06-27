@@ -85,6 +85,7 @@ class RegisterController extends Controller
             'email'=>$accounts->email,
             'cuenta'=>$cuenta,
             'saldo'=>300.00,
+            'estado'=>'activa',
             'user_id'=>$accounts->id,
         ]);
     }

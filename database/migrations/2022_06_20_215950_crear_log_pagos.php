@@ -15,8 +15,8 @@ class CrearLogPagos extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->integer('origen');
-            $table->integer('destino');
+            $table->bigInteger('origen');
+            $table->bigInteger('destino');
             $table->decimal('envio', 10, 2);
             $table->string('status');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');

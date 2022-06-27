@@ -9,5 +9,5 @@ class Accounts extends Model
 {
     use HasFactory;
     protected $table = "accounts";
-    protected $fillable = ['name','email', 'cuenta', 'saldo'];
+    protected $fillable = ['name','email', 'cuenta', 'saldo', 'status', 'user_id'];
 }

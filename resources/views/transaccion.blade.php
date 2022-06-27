@@ -21,6 +21,20 @@
                     @endif
                 </div>
             </div>
+            <div>
+                <p>*No tienen cuentas a donde tranferir?</p>
+                <p>#Tienen que registrarla abajo.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <br>
+                    <a href="{{url('/usuarios')}}">Usuarios registrados de prueba</a>
+                </div>
+                <div class="col-sm-4">
+                    <br>
+                    <a href="{{url('/abrir-registrar-cuenta')}}">Registrar Cuentas para transferir</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

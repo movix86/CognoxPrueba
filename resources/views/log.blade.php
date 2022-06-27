@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Estado de su cuenta') }}</div>
+                <div class="card-header">{{ __('Log de pagos') }}</div>
 
                 <div class="card-body">
                     {{-- @if (session('status'))
@@ -16,15 +16,11 @@
 
                     {{ __('You are logged in!') }} --}}
                     @if (isset($data))
-                        @component('components.usuarios.usuarios_finales', ['data'=>$data])
-                            <x-.usuarios.usuarios_finales/>
+                        @component('components.log.log_info', ['data'=>$data])
+                            <x-log.log_info/>
                         @endcomponent
                     @endif
                 </div>
-            </div>
-            <div class="col-sm-12">
-                <br>
-                <a href="{{url('/transaccion')}}">Hacer transaccion</a>
             </div>
         </div>
     </div>

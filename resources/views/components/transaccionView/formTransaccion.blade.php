@@ -8,7 +8,7 @@
             <tr>
               <th>Cuenta de origen</th>
               <th>a</th>
-              <th>Cuenta de destino</th>
+              <th>Cuenta registrada destino</th>
               <th>Cantidad</th>
             </tr>
           </thead>
@@ -16,7 +16,7 @@
             <tr>
               <td>
                 <select class="form-control" name="origen" id="origen">
-                    <option>Cuenta Origen</option>
+                    <option>Cuentas Propias</option>
                     @if (isset($data))
                         @foreach ($data as $item)
                             <option value="{{$item->cuenta}}">{{$item->cuenta}}</option>
@@ -26,9 +26,14 @@
               </td>
               <td>Envias a:</td>
               <td>
-                <div class="form-group">
-                    <input type="number" class="form-control form-control" id="destino" name="destino">
-                </div>
+                <select class="form-control" name="destino" id="destino">
+                    <option>Cuenta destino</option>
+                    @if (isset($data))
+                        @foreach ($data as $item)
+                            <option value="{{$item->account_target}}">{{$item->account_target . ' - ' . $item->name}}</option>
+                        @endforeach
+                    @endif
+                </select>
               </td>
               <td>
                 <div class="form-group">
