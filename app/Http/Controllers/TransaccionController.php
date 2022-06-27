@@ -45,7 +45,7 @@ class TransaccionController extends Controller
             'cuentasregistradas.account_target',
             )->leftjoin('cuentasregistradas', 'cuentasregistradas.user_origin_id', '=', 'accounts.user_id',)->where('accounts.user_id', '=', trim($user))->get();
 
-        return view('transaccion', ['data'=>$data]);
+        return view('transaccion');
     }
 
     #ENVIOS
