@@ -8,7 +8,7 @@
                 <div class="card-header">
                     {{ __('Transacciones: ') }}
                     @if (isset($data))
-                        @foreach ($data as $item)
+                        @foreach ($data['origen'] as $item)
                             {{$item->name . " - " . "tu saldo: " . $item->saldo}}
                         @endforeach
                     @endif
