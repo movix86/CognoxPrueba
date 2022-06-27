@@ -40,11 +40,8 @@ class TransaccionController extends Controller
         if (!$user) {
             return redirect('/login');
         }
-        $data = Accounts::select(
-            'accounts.cuenta',
-            'cuentasregistradas.account_target'
-            )->join('cuentasregistradas', 'accounts.user_id', '=', 'cuentasregistradas.user_origin_id')->where('accounts.user_id', $user)->get();
-            dd($data);
+        $data = Accounts::select('*')->join('cuentasregistradas', 'accounts.user_id', '=', 'cuentasregistradas.user_origin_id')->where('accounts.user_id', $user)->get();
+
         return view('transaccion');
     }
 
