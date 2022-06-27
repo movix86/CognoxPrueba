@@ -34,7 +34,7 @@ class TransaccionController extends Controller
         return view('usuarios_finales', ['data'=>$data]);
     }
     public function transaccion(){
-        $user=Auth::user()->id;
+        // $user=Auth::user()->id;
         // $origen = Accounts::where('user_id', $user)->get();
         // $destino = CuentasRegistradas::where('user_origin_id', $user)->get();
         if (!$user) {
