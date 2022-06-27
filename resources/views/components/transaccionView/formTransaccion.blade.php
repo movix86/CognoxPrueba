@@ -30,7 +30,7 @@
                     <option>Cuenta destino</option>
                     @if (isset($data))
                         @foreach ($data as $item)
-                            <option value="{{$item->account_target}}">{{$item->account_target . ' - ' . $item->name}}</option>
+                            <option value="{{$item->account_target}}">{{$item->account_target}}</option>
                         @endforeach
                     @endif
                 </select>
