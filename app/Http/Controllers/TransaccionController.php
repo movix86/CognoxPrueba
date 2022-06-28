@@ -97,7 +97,8 @@ class TransaccionController extends Controller
     }
 
     public function log(){
-        $data = Pagos::all();
+        $user = Auth::user()->id;
+        $data = Pagos::where('user_id', $user)->get();
         return view('log', ['data'=>$data]);
     }
 
