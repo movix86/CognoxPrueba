@@ -9,5 +9,5 @@ class CuentasRegistradas extends Model
 {
     use HasFactory;
     protected $table = "cuentasregistradas";
-    protected $fillable = ['user_origin_id', 'user_target_id', 'account_target'];
+    protected $fillable = ['account_target', 'user_origin_id', 'user_target_id'];
 }

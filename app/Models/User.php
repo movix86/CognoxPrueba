@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Accounts;
+use App\Models\CuentasRegistradas;
 
 class User extends Authenticatable
 {
@@ -46,7 +47,12 @@ class User extends Authenticatable
 
     public function accounts()
     {
-        return $this->hasMany(Accounts::class);
+        return $this->hasMany(Accounts::class, 'user_id');
+    }
+
+    public function registers()
+    {
+        return $this->hasMany(CuentasRegistradas::class, 'user_origin_id');
     }
 
 }

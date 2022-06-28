@@ -13,7 +13,7 @@ class RegisterAccount extends Migration
      */
     public function up()
     {
-        Schema::create('cuentasRegistradas', function (Blueprint $table) {
+        Schema::create('cuentasregistradas', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('account_target');
             $table->foreignId('user_origin_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
@@ -29,6 +29,6 @@ class RegisterAccount extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuentasRegistradas');
+        Schema::dropIfExists('cuentasregistradas');
     }
 }

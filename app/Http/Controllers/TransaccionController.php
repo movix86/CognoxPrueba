@@ -35,21 +35,21 @@ class TransaccionController extends Controller
     }
     public function transaccion(){
         $user=Auth::user()->id;
+
+        // dd($usuarios->registers);
         // $origen = Accounts::where('user_id', $user)->get();
         // $destino = CuentasRegistradas::where('user_origin_id', $user)->get();
         if (empty($user)) {
             return redirect('/login');
         }else{
-            $data = Accounts::select(
-                'accounts.name',
-                'accounts.cuenta',
-                'accounts.user_id',
-                'cuentasregistradas.account_target',
-                'cuentasregistradas.user_origin_id',
-                'cuentasregistradas.user_target_id'
-                )->join('cuentasregistradas', 'cuentasregistradas.user_origin_id', '=', 'accounts.user_id')->where('accounts.user_id', $user)->get();
+            $data=User::find($user);
+            // $data = Accounts::select(
+            //     'accounts.cuenta',
+            //     'accounts.user_id',
+            //     'cuentasregistradas.account_target'
+            //     )->leftjoin('cuentasregistradas', 'cuentasregistradas.user_origin_id', '=', 'accounts.user_id')->where('accounts.user_id', $user)->get();
         }
-        return view('transaccion');
+        return view('transaccion', ['data' => $data]);
     }
 
     #ENVIOS
