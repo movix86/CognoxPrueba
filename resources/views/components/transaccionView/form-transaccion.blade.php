@@ -18,8 +18,8 @@
                 <select class="form-control" name="origen" id="origen">
                     <option>Cuentas Propias</option>
                     @if (isset($data))
-                        @foreach ($data['origen'] as $itemOrigen)
-                            <option value="{{$itemOrigen->cuenta}}">{{$itemOrigen->cuenta}}</option>
+                        @foreach ($data as $item)
+                            <option value="{{$item->cuenta}}">{{$item->cuenta}}</option>
                         @endforeach
                     @endif
                 </select>
@@ -29,8 +29,8 @@
                 <select class="form-control" name="destino" id="destino">
                     <option>Cuenta destino</option>
                     @if (isset($data))
-                        @foreach ($data['destino'] as $itemDestino)
-                            <option value="{{$itemDestino->account_target}}">{{$itemDestino->account_target}}</option>
+                        @foreach ($data as $item)
+                            <option value="{{$item->account_target}}">{{$item->account_target}}</option>
                         @endforeach
                     @endif
                 </select>

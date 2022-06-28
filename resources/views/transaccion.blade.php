@@ -8,15 +8,15 @@
                 <div class="card-header">
                     {{ __('Transacciones: ') }}
                     @if (isset($data))
-                        @foreach ($data['origen'] as $item)
+                        @foreach ($data as $item)
                             {{$item->name . " - " . "tu saldo: " . $item->saldo}}
                         @endforeach
                     @endif
                 </div>
                 <div class="card-body">
                     @if (isset($data))
-                        @component('components.transaccionView.formTransaccion', ['data'=>$data])
-                            <x-transaccionView.formTransaccion/>
+                        @component('components.transaccionView.form-transaccion', ['data'=>$data])
+                            <x-transaccionView.form-transaccion/>
                         @endcomponent
                     @endif
                 </div>
