@@ -55,8 +55,7 @@ class TransaccionController extends Controller
         $cuentaDestino = Accounts::where('cuenta', $data['destino'])->first();
         $cuentaOrigen = Accounts::where('cuenta', $data['origen'])->first();
         $data['destino_user_id'] = $cuentaDestino['id'];
-        // var_dump($cuentaDestino);
-        // die();
+
         if($cuentaOrigen->saldo <= 0){
             return back()->with('error','No cuenta con suficiente saldo!');
         }
@@ -175,8 +174,7 @@ class TransaccionController extends Controller
             'accounts.cuenta',
             'accounts.saldo',
             )->leftjoin('accounts', 'accounts.user_id', '=', 'users.id',)->where('users.id', '=', trim($user))->get();
-        // var_dump($data);
-        // die();
+        
         return view('estado_cuenta', ['data' => $data]);
     }
 }
