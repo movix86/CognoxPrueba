@@ -24,8 +24,7 @@ class CreateUserValidator extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required|regex:/^[a-zA-Z]+$/u|max:255|'],
-            // 'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'documento' => ['required', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'numeric', 'min:111', 'max:9999', 'confirmed'],
