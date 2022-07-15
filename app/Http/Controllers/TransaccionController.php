@@ -65,6 +65,9 @@ class TransaccionController extends Controller
         if ($data['origen'] == $cuentaDestino['cuenta']){
             return back()->with('error','No puedes enviar dinero a tu cuenta!');
         }else if ($data['origen'] !== $cuentaDestino->cuenta){
+            if ($cuentaOrigen->saldo < $data['cantidad']) {
+                return back()->with('error','No tienes los fondos suficientes!');
+            }
             $cuentaDestino->saldo = $cuentaDestino->saldo + $data['cantidad'];
             $cuentaOrigen->saldo = $cuentaOrigen->saldo - $data['cantidad'];
         }
@@ -174,7 +177,7 @@ class TransaccionController extends Controller
             'accounts.cuenta',
             'accounts.saldo',
             )->leftjoin('accounts', 'accounts.user_id', '=', 'users.id',)->where('users.id', '=', trim($user))->get();
-        
+
         return view('estado_cuenta', ['data' => $data]);
     }
 }
